@@ -1,0 +1,30 @@
+.Navbar-Logo {
+   color:blue !important;
+}
+
+.applogo
+{
+   height: 100px;
+   margin-left: 100px;
+}
+
+.navigation
+{
+   background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.151));
+   
+}
+
+.linkset
+{
+   margin-top: -70px;
+}
+
+.navlinkcol
+{
+   color: white !important;
+}
+
+.itemsset
+{
+   margin-right: 25px;
+}
