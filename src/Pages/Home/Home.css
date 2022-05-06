@@ -1,0 +1,208 @@
+.HomeNavImage
+{
+    background-image: url(../../Assets/Images/HomeImage.png);
+    height: 450px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: -120px;
+    color: white;
+}
+
+.headerRow
+{
+    padding-top: 125px;
+
+}
+
+.headertext
+{
+    padding-top: 75px;
+    letter-spacing: 2px;
+    line-height: 20px;
+}
+
+.headercarousel
+{
+    width: 300px !important;
+    height: 300px !important;
+}
+
+.headercarouselinner
+{
+    border-radius: 20px;
+    border: 10px solid white;
+}
+
+.headerbutton
+{
+    margin-top: 50px;
+    color: white;
+    background-color: rgb(140, 198, 63) !important;
+    font-size: 20px !important;
+    letter-spacing: 2px;
+}
+
+.carousalcol
+{
+    margin-left: 55%;
+}
+
+.HomePromoStrip
+{
+    height: 400px;
+    background-color: rgb(250, 228, 202);
+    padding: 50px;
+    padding-left: 50px !important;
+    justify-content: center;
+}
+
+.promoimage
+{
+    min-height: 300px !important;
+    margin-left: 100px;
+    border-radius: 180px !important;
+}
+
+.promotextcol
+{
+    background-color: rgb(247, 203, 94);
+    margin-left: -500px;
+    margin-right: 50px;
+    border-radius: 30px;
+    margin-top: 50px !important; 
+    margin-bottom: 50px !important; 
+}
+
+.promorows
+{
+    margin-left: 50px !important;
+    margin-top: 50px !important;
+    color: brown;
+    letter-spacing: 1.5px;
+}
+
+.promotxt2
+{
+    margin-top: 30px !important;
+    margin-left: 50px !important;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.promobtn
+{
+    background-color: brown !important;
+    font-size: 20px !important;
+}
+
+.cardsetname
+{
+    color: black;
+    letter-spacing: 1.5px;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cardsetrow
+{
+    margin-left: 50px !important;
+    margin-bottom: 50px !important;
+}
+
+.cardimgrow
+{
+    padding-top: 25px ;
+    justify-content: center;
+}
+
+.cardset1
+{
+    background-color: rgb(235, 107, 107) !important;
+}
+
+.cardset2
+{
+    background-color: rgb(66, 163, 207) !important;
+}
+
+.cardset3
+{
+    background-color: rgb(240, 162, 17) !important;
+}
+
+.cardset4
+{
+    background-color: rgb(122, 85, 35) !important;
+}
+
+.cardtxt
+{
+    font-size: 25px !important;
+    color: white !important;
+    text-align: center;
+
+}
+
+.cardimg
+{
+    width: 150px !important;
+}
+
+.HomePromoStrip2
+{
+    height: 400px;
+    background-color: rgb(153, 228, 124);
+    padding: 50px;
+    padding-left: 50px !important;
+    justify-content: center;
+}
+
+.promoimage2
+{
+    min-height: 300px !important;
+    border-radius: 180px !important;
+    margin-left: 200px;
+}
+
+.promotextcol2
+{
+    background-color: rgb(26, 65, 3);
+    border-radius: 30px;
+    margin-top: 50px !important; 
+    margin-bottom: 50px !important; 
+}
+
+.promorows2
+{
+    margin-left: 5px !important;
+    letter-spacing: 1.5px;
+    margin-top: 20px !important;
+}
+
+.promotxt22
+{
+    margin-top: 30px !important;
+    margin-left: 50px !important;
+    color: white !important;
+    letter-spacing: 1px;
+}
+
+.promobtn2
+{
+    background-color: rgb(253, 253, 253) !important;
+    font-size: 20px !important;
+    margin-top: 30px !important;
+    color: rgb(26, 65, 3) !important;
+}
+
+.promotxt2
+{
+    color: white !important;
+}
+
+.TwitterFeed
+{
+    margin-bottom: 50px;
+}
