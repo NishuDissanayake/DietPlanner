@@ -1,0 +1,65 @@
+.HomeNavImage
+{
+    background-image: url(../../Assets/Images/LoginHeader.png);
+    height: 450px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: -120px;
+    color: white;
+}
+
+.logtitle
+{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.logintxt
+{
+    color: rgb(140, 198, 63) !important;
+    text-align: center;
+}
+
+.loginFormCont
+{
+    margin-top: 30px;
+}
+
+.loginform
+{
+    box-shadow: rgb(140, 198, 63) 0px 1px 4px;
+    padding-left: 150px !important;
+    padding-right: 150px !important;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-bottom: 100px;
+}
+
+.inputfields
+{
+    max-width: 200px !important;
+}
+
+.greentext
+{
+    color: rgb(140, 198, 63);
+}
+
+.regtxt
+{
+    margin-top: 20px;
+}
+
+.subbtn
+{
+    background-color: rgb(140, 198, 63) !important;
+}
+
+#form1Example3
+{
+    background-color: rgb(140, 198, 63);
+    border: 1px solid rgb(140, 198, 63);
+}
