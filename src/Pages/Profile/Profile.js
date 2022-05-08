@@ -81,7 +81,7 @@ function Profile() {
               <th scope='col'>Lunch</th>
               <th scope='col'>Snack</th>
               <th scope='col'>Dinner</th>
-              <th scope='col'>Regenerate</th>
+              <th scope='col'>Delete</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
@@ -91,7 +91,7 @@ function Profile() {
               <td>Otto</td>
               <td>@mdo</td>
               <td>@mdo</td>
-              <td><MDBBtn>Edit</MDBBtn></td>
+              <td><MDBBtn>Delete</MDBBtn></td>
             </tr>
             <tr>
               <td>2</td>
@@ -99,7 +99,7 @@ function Profile() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@mdo</td>
-              <td><MDBBtn>Edit</MDBBtn></td>
+              <td><MDBBtn>Delete</MDBBtn></td>
             </tr>
             <tr>
               <td>1</td>
@@ -107,7 +107,7 @@ function Profile() {
               <td>Otto</td>
               <td>@mdo</td>
               <td>@mdo</td>
-              <td><MDBBtn>Edit</MDBBtn></td>
+              <td><MDBBtn>Delete</MDBBtn></td>
             </tr>
             <tr>
               <td>2</td>
@@ -115,7 +115,7 @@ function Profile() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@mdo</td>
-              <td><MDBBtn>Edit</MDBBtn></td>
+              <td><MDBBtn>Delete</MDBBtn></td>
             </tr>
           </MDBTableBody>
         </MDBTable>
