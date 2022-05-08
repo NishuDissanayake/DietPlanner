@@ -9,6 +9,7 @@ import SignUp from './Pages/SignUp/SignUp';
 import AdminDashboard from './Pages/AdminDashboard/AdminDashboard';
 import CalorieRequirement from './Pages/CalorieRequirement/CalorieRequirement';
 import Profile from './Pages/Profile/Profile';
+import MealPlan from './Pages/MealPlan/MealPlan';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/analysis" element={<CalorieRequirement />} />
+        <Route path="/planner" element={<MealPlan />} />
       </Routes>
       <Footer />
       </div>

@@ -21,15 +21,15 @@ function AdminDashboard() {
 
       <MDBContainer className='mealFormCont'>
         <form className='mealform'>
-        <MDBRow>
+          <MDBRow>
             <MDBCol>
-            <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Name' />
+              <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Name' />
             </MDBCol>
             <MDBCol>
-            <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Calorie Count' />
+              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Calorie Count' />
             </MDBCol>
           </MDBRow>
-          
+
           <MDBRow>
             <MDBCol>
               <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Portion' />
@@ -38,7 +38,8 @@ function AdminDashboard() {
               <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Prep Time' />
             </MDBCol>
           </MDBRow>
-          
+          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Recipe Link' />
+
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex'>
               <label>Meal Time:</label>
@@ -74,7 +75,6 @@ function AdminDashboard() {
               <MDBRadio id='form1Example3' name='mealtype' label='Vegan' />
             </MDBCol>
           </MDBRow>
-
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex'>
               <label>Allergens:</label>
