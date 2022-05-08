@@ -1,6 +1,6 @@
 import React from 'react';
 import './AdminDashboard.css';
-import { MDBContainer, MDBBtn, MDBRow, MDBCol, MDBInput, MDBCheckbox, MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBBtn, MDBRow, MDBCol, MDBInput, MDBRadio, MDBCheckbox, MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
 
 function AdminDashboard() {
   return (
@@ -21,34 +21,27 @@ function AdminDashboard() {
 
       <MDBContainer className='mealFormCont'>
         <form className='mealform'>
-          <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Name' />
+        <MDBRow>
+            <MDBCol>
+            <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Name' />
+            </MDBCol>
+            <MDBCol>
+            <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Calorie Count' />
+            </MDBCol>
+          </MDBRow>
+          
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Meal ID' />
+              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Portion' />
             </MDBCol>
             <MDBCol>
               <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Prep Time' />
             </MDBCol>
           </MDBRow>
-          <MDBRow>
-            <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Calorie Count' />
-            </MDBCol>
-            <MDBCol>
-              <select className='dpdown'>
-                <option value='0'>Allergens</option>
-                <option value='0'>Peanut</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-              </select>
-            </MDBCol>
-          </MDBRow>
+          
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex'>
-              <label>Portion:</label>
+              <label>Meal Time:</label>
             </MDBCol>
             <MDBCol className='d-flex'>
               <MDBCheckbox id='form1Example3' label='Breakfast' />
@@ -63,6 +56,25 @@ function AdminDashboard() {
               <MDBCheckbox id='form1Example3' label='Dinner' />
             </MDBCol>
           </MDBRow>
+
+          <MDBRow className='mb-4'>
+            <MDBCol className='d-flex'>
+              <label>Meal Type:</label>
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBRadio id='form1Example3' name='mealtype' label='Anything' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBRadio id='form1Example3' name='mealtype' label='Paleo' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBRadio id='form1Example3' name='mealtype' label='Vegetarian' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBRadio id='form1Example3' name='mealtype' label='Vegan' />
+            </MDBCol>
+          </MDBRow>
+
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex'>
               <label>Allergens:</label>
@@ -71,13 +83,35 @@ function AdminDashboard() {
               <MDBCheckbox id='form1Example3' label='Peanut' />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Spinach' />
+              <MDBCheckbox id='form1Example3' label='Egg' />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Coconut' />
+              <MDBCheckbox id='form1Example3' label='Dairy' />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Milk' />
+              <MDBCheckbox id='form1Example3' label='Fish' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Soy' />
+            </MDBCol>
+          </MDBRow>
+          <MDBRow className='mb-4'>
+            <MDBCol className='d-flex'>
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Wheat' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Sesame' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Seafood' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Mustard' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Nuts' />
             </MDBCol>
           </MDBRow>
           <MDBBtn type='submit' className='subbtn' block>
@@ -98,7 +132,7 @@ function AdminDashboard() {
               <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Post' />
             </MDBCol>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Hospital' />
+              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Location' />
             </MDBCol>
           </MDBRow>
           <MDBRow>
@@ -107,8 +141,8 @@ function AdminDashboard() {
             </MDBCol>
             <MDBCol>
               <select className='dpdown'>
-                <option value='0'>Specialize in</option>
-                <option value='0'>Peanut</option>
+                <option value='0'>Province</option>
+                <option value='0'>Province</option>
                 <option value='0'>Egg</option>
                 <option value='0'>Egg</option>
                 <option value='0'>Egg</option>

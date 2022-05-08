@@ -26,97 +26,82 @@ function GetStarted() {
 
       <MDBContainer className='mealFormCont'>
         <form className='mealform'>
-          <MDBRow>
-            <MDBCol sm="4">
-              <label>Objective </label>
-            </MDBCol>
-            <MDBCol >
-              <MDBRow className='justify-content-right radiorow'>
-                <MDBCol>
-                  <MDBRadio btn btnColor='success' id='btn-radio' name='options' label='Lose Weight' />
-                </MDBCol>
-                <MDBCol>
-                  <MDBRadio btn btnColor='success' id='btn-radio' name='options' label='Lose Weight' />
-                </MDBCol>
-                <MDBCol>
-                  <MDBRadio btn btnColor='success' id='btn-radio' name='options' label='Lose Weight' />
-                </MDBCol>
-              </MDBRow>
-            </MDBCol>
-          </MDBRow>
 
           <MDBRow>
-            <MDBCol sm="4">
-              <label>Gender </label>
-            </MDBCol>
-            <MDBCol >
-              <MDBRow className='justify-content-right radiorow'>
-                <MDBCol >
-                  <MDBRadio btn btnColor='success' id='btn-radio' name='options' label='Male' />
-                </MDBCol>
-                <MDBCol>
-                  <MDBRadio btn btnColor='success' id='btn-radio' name='options' label='Female' />
-                </MDBCol>
-              </MDBRow>
-            </MDBCol>
-          </MDBRow>
-
-          <MDBRow>
-            <MDBCol sm="4">
-              <label>Objective </label>
-            </MDBCol>
-            <MDBCol >
-              <MDBBtnGroup className='inpbtn'>
-                <MDBRadio btn btnColor='success' id='btn-radio' name='options' wrapperTag='span' label='Lose Weight' />
-                <MDBRadio
-                  btn btnColor='success' id='btn-radio2' name='options' wrapperClass='mx-2' wrapperTag='span' label='Maintain Weight' />
-                <MDBRadio btn btnColor='success' id='btn-radio3' name='options' wrapperTag='span' label='Build Muscles' />
-              </MDBBtnGroup>
-            </MDBCol>
-          </MDBRow>
-
-          <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Name' />
-          <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Meal ID' />
+              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Age' />
             </MDBCol>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Prep Time' />
-            </MDBCol>
-          </MDBRow>
-          <MDBRow>
-            <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Calorie Count' />
-            </MDBCol>
             <MDBCol>
               <select className='dpdown'>
-                <option value='0'>Allergens</option>
-                <option value='0'>Peanut</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
+                <option value='0'>Gender</option>
+                <option value='0'>Male</option>
+                <option value='0'>Female</option>
               </select>
             </MDBCol>
-          </MDBRow>
-          <MDBRow className='mb-4'>
-            <MDBCol className='d-flex'>
-              <label>Portion:</label>
-            </MDBCol>
-            <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Breakfast' />
-            </MDBCol>
-            <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Lunch' />
-            </MDBCol>
-            <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Snack' />
-            </MDBCol>
-            <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Dinner' />
             </MDBCol>
           </MDBRow>
+
+          
+
+          <MDBRow>
+            <MDBCol>
+              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Weight in Kg' />
+            </MDBCol>
+            <MDBCol>
+            <MDBCol>
+              <select className='dpdown'>
+                <option value='0'>Primary Diet</option>
+                <option value='0'>Anything</option>
+                <option value='0'>Paleo</option>
+                <option value='0'>Vegan</option>
+                <option value='0'>Vegetarian</option>
+              </select>
+            </MDBCol>
+            </MDBCol>
+          </MDBRow>
+
+          <MDBRow>
+            <MDBCol sm="3">
+              <label>Body Fat </label>
+            </MDBCol>
+            <MDBCol >
+              <MDBRow className='justify-content-right radiorow'>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Low' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Moderate' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='High' />
+                </MDBCol>
+              </MDBRow>
+            </MDBCol>
+          </MDBRow>
+
+          <MDBRow>
+            <MDBCol sm="3">
+              <label>Activity Levels </label>
+            </MDBCol>
+            <MDBCol >
+              <MDBRow className='justify-content-right radiorow'>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Light' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Moderate' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Heavy' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Very Heavy' />
+                </MDBCol>
+              </MDBRow>
+            </MDBCol>
+          </MDBRow>
+
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex'>
               <label>Allergens:</label>
@@ -125,18 +110,40 @@ function GetStarted() {
               <MDBCheckbox id='form1Example3' label='Peanut' />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Spinach' />
+              <MDBCheckbox id='form1Example3' label='Egg' />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Coconut' />
+              <MDBCheckbox id='form1Example3' label='Dairy' />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Milk' />
+              <MDBCheckbox id='form1Example3' label='Fish' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Soy' />
             </MDBCol>
           </MDBRow>
-          <MDBBtn type='submit' className='subbtn' block>
-            Next
-          </MDBBtn>
+
+          <MDBRow className='mb-4'>
+            <MDBCol className='d-flex'>
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Wheat' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Sesame' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Seafood' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Mustard' />
+            </MDBCol>
+            <MDBCol className='d-flex'>
+              <MDBCheckbox id='form1Example3' label='Nuts' />
+            </MDBCol>
+          </MDBRow>
+         
+          <MDBBtn type='submit' className='subbtn' block>Next</MDBBtn>
         </form>
       </MDBContainer>
     </div>

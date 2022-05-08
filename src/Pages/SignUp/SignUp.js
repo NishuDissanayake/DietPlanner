@@ -18,7 +18,7 @@ function SignUp() {
       </MDBContainer>
 
       <MDBContainer className='logtitle'>
-        <h1 className='logintxt'>Login</h1>
+        <h1 className='logintxt'>Sign Up</h1>
       </MDBContainer>
 
       <MDBContainer className='loginFormCont'>
@@ -29,7 +29,7 @@ function SignUp() {
           </MDBRow>
           <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Email address' />
           <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Password' />
-          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Mobile Number' />
+          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Confirm Password' />
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex justify-content-center'>
               <MDBCheckbox id='form1Example3' label='Remember me' defaultChecked />
