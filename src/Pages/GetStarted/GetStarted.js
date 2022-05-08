@@ -32,32 +32,48 @@ function GetStarted() {
               <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Age' />
             </MDBCol>
             <MDBCol>
-            <MDBCol>
-              <select className='dpdown'>
-                <option value='0'>Gender</option>
-                <option value='0'>Male</option>
-                <option value='0'>Female</option>
-              </select>
-            </MDBCol>
+              <MDBCol>
+                <select className='dpdown'>
+                  <option value='0'>Gender</option>
+                  <option value='0'>Male</option>
+                  <option value='0'>Female</option>
+                </select>
+              </MDBCol>
             </MDBCol>
           </MDBRow>
 
-          
+
 
           <MDBRow>
             <MDBCol>
               <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Weight in Kg' />
             </MDBCol>
             <MDBCol>
-            <MDBCol>
-              <select className='dpdown'>
-                <option value='0'>Primary Diet</option>
-                <option value='0'>Anything</option>
-                <option value='0'>Paleo</option>
-                <option value='0'>Vegan</option>
-                <option value='0'>Vegetarian</option>
-              </select>
+              <MDBCol>
+              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Heaight in cm' />
+              </MDBCol>
             </MDBCol>
+          </MDBRow>
+
+          <MDBRow>
+          <MDBCol sm="3">
+              <label>Primary Diet </label>
+            </MDBCol>
+            <MDBCol >
+              <MDBRow className='justify-content-right radiorow'>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Anything' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Paleo' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Vegetarian' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Vegan' />
+                </MDBCol>
+              </MDBRow>
             </MDBCol>
           </MDBRow>
 
@@ -75,6 +91,9 @@ function GetStarted() {
                 </MDBCol>
                 <MDBCol>
                   <MDBRadio id='btn-radio' name='options' label='High' />
+                </MDBCol>
+                <MDBCol>
+                  <MDBRadio id='btn-radio' name='options' label='Very High' />
                 </MDBCol>
               </MDBRow>
             </MDBCol>
@@ -142,7 +161,7 @@ function GetStarted() {
               <MDBCheckbox id='form1Example3' label='Nuts' />
             </MDBCol>
           </MDBRow>
-         
+
           <MDBBtn type='submit' className='subbtn' block>Next</MDBBtn>
         </form>
       </MDBContainer>
