@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './AdminDashboard.css';
 import { MDBContainer, MDBBtn, MDBRow, MDBCol, MDBInput, MDBRadio, MDBCheckbox, MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
+import { getUserData } from '../../APIs/UsersAPI';
+import Axios from 'axios';
+
 
 function AdminDashboard() {
+
+  const [userData, setUserData] = useState([]);
+  const [mealData, setMealData] = useState([]);
+
+  const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
+
+  useEffect(() => {
+    Axios.get(`https://healthyceylon.000webhostapp.com/admin_user_retrieve.php?APIkey=${APIkey}`)
+      .then((res) => {
+        setUserData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+  }, []); 
+
+  useEffect(() => {
+    Axios.get(`https://healthyceylon.000webhostapp.com/admin_meals_retrieve.php?APIkey=${APIkey}`)
+    .then((res) => {
+      setMealData(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
+  }, []); 
+  
+
+  
   return (
     <div>
       <MDBContainer fluid className='HomeNavImage'>
@@ -168,42 +201,26 @@ function AdminDashboard() {
           <MDBTableHead>
             <tr>
               <th scope='col'>ID</th>
-              <th scope='col'>First</th>
-              <th scope='col'>Last</th>
-              <th scope='col'>Handle</th>
+              <th scope='col'>First Name</th>
+              <th scope='col'>Last Name</th>
+              <th scope='col'>Email</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
+            {userData.map((data, key) => (
+              <tr key={key}>
+                <td>{data.uid}</td>
+                <td>{data.firstname}</td>
+                <td>{data.lastname}</td>
+                <td>{data.email}</td>
+              </tr>
+            ))}
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>
 
       <MDBContainer className='addmealtitle'>
-        <h1 className='titletxt'>See Nutritionists...</h1>
+        <h1 className='titletxt'>See Meals...</h1>
       </MDBContainer>
 
       <MDBContainer className='UserTable'>
@@ -211,42 +228,32 @@ function AdminDashboard() {
           <MDBTableHead>
             <tr>
               <th scope='col'>ID</th>
-              <th scope='col'>First</th>
-              <th scope='col'>Last</th>
-              <th scope='col'>Handle</th>
+              <th scope='col'>Name</th>
+              <th scope='col'>Meal Type</th>
+              <th scope='col'>Calorie Count</th>
+              <th scope='col'>Portion</th>
+              <th scope='col'>Prep Time</th>
+              <th scope='col'>Link</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
+          {mealData.map((data1, key) => (
+              <tr key={key}>
+                <td>{data1.mealid}</td>
+                <td>{data1.name}</td>
+                <td>{data1.mealtype}</td>
+                <td>{data1.clories}</td>
+                <td>{data1.amount}</td>
+                <td>{data1.preptime}</td>
+                <td>{data1.recipelink}</td>
+              </tr>
+            ))}
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>
 
       <MDBContainer className='addmealtitle'>
-        <h1 className='titletxt'>See Meals...</h1>
+        <h1 className='titletxt'>See Nutritionists...</h1>
       </MDBContainer>
 
       <MDBContainer className='UserTable lastTable'>
