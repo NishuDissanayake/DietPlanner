@@ -33,17 +33,23 @@ function SignUp() {
 
   const signup = (e) => {
     e.preventDefault();
-    Axios.post(`https://healthyceylon.000webhostapp.com/signup_add.php?APIkey=${APIkey}`, null, {
-      params: {
-        fname: fname,
-        lname: lname,
-        email: email,
-        pwwd: pwd
-      }
-    })
-    .then(
-      setSignedUp(true)
-    )
+    if (pwd === cpwd) {
+      Axios.post(`https://healthyceylon.000webhostapp.com/signup_add.php?APIkey=${APIkey}`, null, {
+        params: {
+          fname: fname,
+          lname: lname,
+          email: email,
+          pwwd: pwd
+        }
+      })
+        .then(
+          setSignedUp(true)
+        )
+    }
+    else {
+      alert("The passwords do not match!!!");
+    }
+
   }
 
   return (
@@ -72,12 +78,12 @@ function SignUp() {
       <MDBContainer className='loginFormCont'>
         <form className='loginform' onSubmit={signup}>
           <MDBRow>
-            <MDBCol><MDBInput className='mb-4 inputfields' type='text' id='form1Example1' label='First Name' onChange={firstnameHandler} /></MDBCol>
-            <MDBCol><MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Last Name' onChange={lastnameHandler} /></MDBCol>
+            <MDBCol><MDBInput className='mb-4 inputfields' type='text' id='form1Example1' label='First Name' onChange={firstnameHandler} required /></MDBCol>
+            <MDBCol><MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Last Name' onChange={lastnameHandler} required /></MDBCol>
           </MDBRow>
-          <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Email address' onChange={emailHandler} />
-          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Password' onChange={pwdHandler} />
-          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Confirm Password' onChange={cpwdHandler} />
+          <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Email address' onChange={emailHandler} required />
+          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Password' onChange={pwdHandler} required />
+          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Confirm Password' onChange={cpwdHandler} required />
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex justify-content-center'>
               <MDBCheckbox id='form1Example3' label='Remember me' defaultChecked />

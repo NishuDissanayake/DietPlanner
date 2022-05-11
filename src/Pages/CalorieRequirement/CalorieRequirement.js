@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './CalorieRequirement.css';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBTable, MDBTableBody, MDBNavbarLink } from 'mdb-react-ui-kit';
 import Axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 function CalorieRequirement() {
 
@@ -66,10 +67,10 @@ function CalorieRequirement() {
 
             </MDBContainer>
 
-           <MDBContainer>
-           <MDBBtn color='success'>
+           <MDBContainer className='proceedbutton'>
+           <NavLink to='/planner' className="btn btn-success">
                 Proceed to generate meal plan
-            </MDBBtn>
+            </NavLink>
            </MDBContainer>
 
         </div>

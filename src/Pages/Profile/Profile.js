@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Profile.css';
 import { MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableBody, MDBTableHead, MDBBtn } from 'mdb-react-ui-kit';
 import Axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 function Profile() {
 
@@ -114,7 +115,7 @@ function Profile() {
             <h1 className='titletxt'>Meal Plan</h1>
           </MDBCol>
           <MDBCol className='justifycontent-end'>
-            <MDBBtn color="success">Generate New Plan</MDBBtn>
+            <NavLink className="btn btn-success" to="/planner">Generate New Plan</NavLink>
           </MDBCol>
         </MDBRow>
       </MDBContainer>

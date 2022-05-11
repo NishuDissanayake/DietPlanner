@@ -1,10 +1,105 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './GetStarted.css';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCheckbox, MDBInput, MDBRadio, MDBBtnGroup } from 'mdb-react-ui-kit';
+import Axios from 'axios';
+import { Navigate } from "react-router-dom";
 
 function GetStarted() {
+
+  const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
+
+  const [age, setAge] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [gender, setGender] = useState("");
+  const [primarydiet, setPrimaryDiet] = useState("");
+  const [bodyfat, setBodyFat] = useState("");
+  const [activity, setActivity] = useState("");
+  const [userdataAdded, setUserDataAdded] = useState(false);
+
+  const [allergyinfo, setAllergyInfo] = useState({
+    allergens: [],
+  });
+
+  const ageHandler = event => {
+    setAge(event.target.value);
+  }
+
+  const weightHandler = event => {
+    setWeight(event.target.value);
+  }
+
+  const heightHandler = event => {
+    setHeight(event.target.value);
+  }
+
+  const genderHandler = event => {
+    setGender(event.target.value);
+  }
+
+  const dietHandler = event => {
+    setPrimaryDiet(event.target.value);
+  }
+
+  const bodyfatHandler = event => {
+    setBodyFat(event.target.value);
+  }
+
+  const activityHandler = event => {
+    setActivity(event.target.value);
+  }
+
+  const uid = 1;
+
+  const addUserData = (e) => {
+    e.preventDefault();
+    Axios.post(`https://healthyceylon.000webhostapp.com/getstarted_insert.php?APIkey=${APIkey}`, null, {
+      params: {
+        age: age,
+        gender: gender,
+        weight: weight,
+        height: height,
+        diet: primarydiet,
+        fat: bodyfat,
+        activity: activity,
+        allergens: allergyinfo.allergens,
+        uid: uid
+      }
+    })
+      .then(
+        setUserDataAdded(true)
+      )
+  }
+
+  const allergenHandler = (e) => {
+    // Destructuring
+    const { value, checked } = e.target;
+    const { allergens } = allergyinfo;
+
+    console.log(`${value} is ${checked}`);
+
+    // Case 1 : The user checks the box
+    if (checked) {
+      setAllergyInfo({
+        allergens: [...allergens, value],
+      });
+    }
+
+    // Case 2  : The user unchecks the box
+    else {
+      setAllergyInfo({
+        allergens: allergens.filter((e) => e !== value)
+      });
+    }
+  }
+
   return (
     <div>
+      { 
+      userdataAdded
+          ? <Navigate to={{ pathname: '/analysis' }} />
+          : <></> 
+      }
       <MDBContainer fluid className='HomeNavImage'>
         <MDBContainer>
           <MDBRow className='headerRow'>
@@ -25,18 +120,18 @@ function GetStarted() {
       </MDBContainer>
 
       <MDBContainer className='mealFormCont'>
-        <form className='mealform'>
+        <form className='mealform' onSubmit={addUserData}>
 
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Age' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Age' onChange={ageHandler}/>
             </MDBCol>
             <MDBCol>
               <MDBCol>
-                <select className='dpdown'>
+                <select className='dpdown' onChange={genderHandler} id="genders" defaultValue="Select gender">
                   <option value='0'>Gender</option>
-                  <option value='0'>Male</option>
-                  <option value='0'>Female</option>
+                  <option value='Male'>Male</option>
+                  <option value='Female'>Female</option>
                 </select>
               </MDBCol>
             </MDBCol>
@@ -46,11 +141,11 @@ function GetStarted() {
 
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Weight in Kg' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Weight in Kg' onChange={weightHandler}/>
             </MDBCol>
             <MDBCol>
               <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Heaight in cm' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Heaight in m' onChange={heightHandler}/>
               </MDBCol>
             </MDBCol>
           </MDBRow>
@@ -62,16 +157,16 @@ function GetStarted() {
             <MDBCol >
               <MDBRow className='justify-content-right radiorow'>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Anything' />
+                  <MDBRadio id='btn-radio' label='Anything' value='Anything' onChange={dietHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Paleo' />
+                  <MDBRadio id='btn-radio' label='Paleo' value='Paleo' onChange={dietHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Vegetarian' />
+                  <MDBRadio id='btn-radio' label='Vegetarian' value='Vegetarian' onChange={dietHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Vegan' />
+                  <MDBRadio id='btn-radio' label='Vegan' value='Vegan' onChange={dietHandler}/>
                 </MDBCol>
               </MDBRow>
             </MDBCol>
@@ -84,16 +179,16 @@ function GetStarted() {
             <MDBCol >
               <MDBRow className='justify-content-right radiorow'>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Low' />
+                  <MDBRadio id='btn-radio' label='Low' value='low' onChange={bodyfatHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Moderate' />
+                  <MDBRadio id='btn-radio' label='Moderate' value='moderate' onChange={bodyfatHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='High' />
+                  <MDBRadio id='btn-radio' label='High' value='high' onChange={bodyfatHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Very High' />
+                  <MDBRadio id='btn-radio' label='Very High' value='veryhigh' onChange={bodyfatHandler}/>
                 </MDBCol>
               </MDBRow>
             </MDBCol>
@@ -106,16 +201,16 @@ function GetStarted() {
             <MDBCol >
               <MDBRow className='justify-content-right radiorow'>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Light' />
+                  <MDBRadio id='btn-radio' label='Light' value='light' onChange={activityHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Moderate' />
+                  <MDBRadio id='btn-radio' label='Moderate' value='moderate' onChange={activityHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Heavy' />
+                  <MDBRadio id='btn-radio' label='Heavy' value='heavy' onChange={activityHandler}/>
                 </MDBCol>
                 <MDBCol>
-                  <MDBRadio id='btn-radio' name='options' label='Very Heavy' />
+                  <MDBRadio id='btn-radio' label='Very Heavy' value='veryheavy' onChange={activityHandler}/>
                 </MDBCol>
               </MDBRow>
             </MDBCol>
@@ -126,19 +221,19 @@ function GetStarted() {
               <label>Allergens:</label>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Peanut' />
+              <MDBCheckbox id='form1Example3' label='Peanut' name='allergens' value="Peanut" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Egg' />
+              <MDBCheckbox id='form1Example3' label='Egg' name='allergens' value="Egg" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Dairy' />
+              <MDBCheckbox id='form1Example3' label='Dairy' name='allergens'value="Dairy" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Fish' />
+              <MDBCheckbox id='form1Example3' label='Fish' name='allergens' value="Fish" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Soy' />
+              <MDBCheckbox id='form1Example3' label='Soy' name='allergens' value="Soy" onChange={allergenHandler}/>
             </MDBCol>
           </MDBRow>
 
@@ -146,19 +241,19 @@ function GetStarted() {
             <MDBCol className='d-flex'>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Wheat' />
+              <MDBCheckbox id='form1Example3' label='Wheat' name='allergens' value="Wheat" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Sesame' />
+              <MDBCheckbox id='form1Example3' label='Sesame' name='allergens' value="Sesame" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Seafood' />
+              <MDBCheckbox id='form1Example3' label='Seafood' name='allergens' value="Seafood" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Mustard' />
+              <MDBCheckbox id='form1Example3' label='Mustard' name='allergens' value="Mustard" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Nuts' />
+              <MDBCheckbox id='form1Example3' label='Nuts' name='allergens' value="Nuts" onChange={allergenHandler}/>
             </MDBCol>
           </MDBRow>
 

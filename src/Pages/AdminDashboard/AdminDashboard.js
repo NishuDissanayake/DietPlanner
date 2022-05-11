@@ -208,11 +208,10 @@ function AdminDashboard() {
 
   return (
     <div>
-      {
-        console.log(mealtimeinfo.mealtime)
-        /* dataAdded
+      { 
+      dataAdded
           ? <Navigate to={{ pathname: '/dashboard' }} />
-          : <></> */
+          : <></> 
       }
       <MDBContainer fluid className='HomeNavImage'>
         <MDBContainer>
@@ -232,22 +231,22 @@ function AdminDashboard() {
         <form className='mealform' onSubmit={addMData}>
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='text' id='form1Example1' label='Name' onChange={mealnameHandler} />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example1' label='Name' onChange={mealnameHandler} required />
             </MDBCol>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Calorie Count' onChange={caloriesHandler} />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Calorie Count' onChange={caloriesHandler} required/>
             </MDBCol>
           </MDBRow>
 
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Portion' onChange={portionHandler} />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Portion' onChange={portionHandler} required/>
             </MDBCol>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Prep Time' onChange={preptimeHandler} />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Prep Time' onChange={preptimeHandler} required/>
             </MDBCol>
           </MDBRow>
-          <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Recipe Link' onChange={rlinkHandler} />
+          <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Recipe Link' onChange={rlinkHandler} required/>
 
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex'>
@@ -335,18 +334,18 @@ function AdminDashboard() {
 
       <MDBContainer className='mealFormCont'>
         <form className='mealform' onSubmit={addNData}>
-          <MDBInput className='mb-4 inputfields' type='text' id='form1Example1' label='Name' onChange={nameHandler} />
+          <MDBInput className='mb-4 inputfields' type='text' id='form1Example1' label='Name' onChange={nameHandler} required/>
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Post' onChange={postHandler} />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Post' onChange={postHandler} required/>
             </MDBCol>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Location' onChange={locationHandler} />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Location' onChange={locationHandler} required/>
             </MDBCol>
           </MDBRow>
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Contact Number' onChange={mobileHandler} />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Contact Number' onChange={mobileHandler} required/>
             </MDBCol>
             <MDBCol>
               <select className='dpdown' onChange={provinceHandler} id="provinces" defaultValue="Select province">
