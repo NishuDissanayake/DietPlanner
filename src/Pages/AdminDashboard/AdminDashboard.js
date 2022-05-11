@@ -3,6 +3,7 @@ import './AdminDashboard.css';
 import { MDBContainer, MDBBtn, MDBRow, MDBCol, MDBInput, MDBRadio, MDBCheckbox, MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
 import { getUserData } from '../../APIs/UsersAPI';
 import Axios from 'axios';
+import { Navigate } from "react-router-dom";
 
 
 function AdminDashboard() {
@@ -22,33 +23,197 @@ function AdminDashboard() {
         console.log(err);
       })
 
-  }, []); 
+  }, []);
 
   useEffect(() => {
     Axios.get(`https://healthyceylon.000webhostapp.com/admin_meals_retrieve.php?APIkey=${APIkey}`)
-    .then((res) => {
-      setMealData(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((res) => {
+        setMealData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
 
-  }, []); 
- 
+  }, []);
+
   useEffect(() => {
     Axios.get(`https://healthyceylon.000webhostapp.com/admin_nutritionist_retrieve.php?APIkey=${APIkey}`)
-    .then((res) => {
-      setNutritionistData(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((res) => {
+        setNutritionistData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
 
-  }, []); 
+  }, []);
+
+  //data insert
+
+  const [name, setName] = useState("");
+  const [post, setPost] = useState("");
+  const [location, setLocation] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [province, setProvince] = useState("");
+  const [dataAdded, setDataAdded] = useState(false);
+
+
+  const nameHandler = event => {
+    setName(event.target.value);
+  }
+
+  const postHandler = event => {
+    setPost(event.target.value);
+  }
+
+  const locationHandler = event => {
+    setLocation(event.target.value);
+  }
+
+  const mobileHandler = event => {
+    setMobile(event.target.value);
+  }
+
+  const provinceHandler = event => {
+    setProvince(event.target.value);
+  }
+
+
+  const addNData = (e) => {
+    e.preventDefault();
+    Axios.post(`https://healthyceylon.000webhostapp.com/admin_nutritionist_add.php?APIkey=${APIkey}`, null, {
+      params: {
+        namee: name,
+        post: post,
+        location: location,
+        contact: mobile,
+        province: province
+      }
+    })
+      .then(
+        setDataAdded(true)
+      )
+  }
+
+  //meal insert
+
+  const [mealname, setMealName] = useState("");
+  const [calories, setCalories] = useState("");
+  const [portion, setPortion] = useState("");
+  const [preptime, setPrepTime] = useState("");
+  const [rlink, setRLink] = useState("");
+  const [mealtype, setMealType] = useState(false);
+  const [mealtimeinfo, setMealTimeInfo] = useState({
+    mealtime: [],
+  });
+
+  const [allergyinfo, setAllergyInfo] = useState({
+    allergens: [],
+  });
+
+  const mealnameHandler = event => {
+    setMealName(event.target.value);
+  }
+
+  const caloriesHandler = event => {
+    setCalories(event.target.value);
+  }
+
+  const portionHandler = event => {
+    setPortion(event.target.value);
+  }
+
+  const preptimeHandler = event => {
+    setPrepTime(event.target.value);
+  }
+
+  const rlinkHandler = event => {
+    setRLink(event.target.value);
+  }
+
+  const mealtypeHandler = event => {
+    setMealType(event.target.value);
+  }
+
+  //checkboxes
 
   
+
+  const mealtimeHandler = (e) => {
+    // Destructuring
+    const { value, checked } = e.target;
+    const { mealtime } = mealtimeinfo;
+
+    console.log(`${value} is ${checked}`);
+
+    // Case 1 : The user checks the box
+    if (checked) {
+      setMealTimeInfo({
+        mealtime: [...mealtime, value],
+      });
+    }
+
+    // Case 2  : The user unchecks the box
+    else {
+      setMealTimeInfo({
+        mealtime: mealtime.filter((e) => e !== value)
+      });
+    }
+  }
+
+  
+
+  const allergenHandler = (e) => {
+    // Destructuring
+    const { value, checked } = e.target;
+    const { allergens } = allergyinfo;
+
+    console.log(`${value} is ${checked}`);
+
+    // Case 1 : The user checks the box
+    if (checked) {
+      setAllergyInfo({
+        allergens: [...allergens, value],
+      });
+    }
+
+    // Case 2  : The user unchecks the box
+    else {
+      setAllergyInfo({
+        allergens: allergens.filter((e) => e !== value)
+      });
+    }
+  }
+
+
+
+  const addMData = (e) => {
+    e.preventDefault();
+    Axios.post(`https://healthyceylon.000webhostapp.com/admin_meal_add.php?APIkey=${APIkey}`, null, {
+      params: {
+        namee: mealname,
+        calories: calories,
+        portion: portion,
+        preptime: preptime,
+        recipe: rlink,
+        mealtime: mealtimeinfo.mealtime,
+        mealtype: mealtype,
+        allergens: allergyinfo.allergens
+      }
+    })
+      .then(
+        setDataAdded(true)
+      )
+  }
+
+
   return (
     <div>
+      {
+        console.log(mealtimeinfo.mealtime)
+        /* dataAdded
+          ? <Navigate to={{ pathname: '/dashboard' }} />
+          : <></> */
+      }
       <MDBContainer fluid className='HomeNavImage'>
         <MDBContainer>
           <MDBRow className='headerRow'>
@@ -64,41 +229,41 @@ function AdminDashboard() {
       </MDBContainer>
 
       <MDBContainer className='mealFormCont'>
-        <form className='mealform'>
+        <form className='mealform' onSubmit={addMData}>
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Name' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example1' label='Name' onChange={mealnameHandler} />
             </MDBCol>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Calorie Count' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Calorie Count' onChange={caloriesHandler} />
             </MDBCol>
           </MDBRow>
 
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Portion' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Portion' onChange={portionHandler} />
             </MDBCol>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Prep Time' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Prep Time' onChange={preptimeHandler} />
             </MDBCol>
           </MDBRow>
-          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Recipe Link' />
+          <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Recipe Link' onChange={rlinkHandler} />
 
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex'>
               <label>Meal Time:</label>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Breakfast' />
+              <MDBCheckbox id='form1Example3' label='Breakfast' name="mealtime" value="Breakfast" onChange={mealtimeHandler} />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Lunch' />
+              <MDBCheckbox id='form1Example3' label='Lunch' name="mealtime" value="Lunch" onChange={mealtimeHandler} />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Snack' />
+              <MDBCheckbox id='form1Example3' label='Snack' name="mealtime" value="Snack" onChange={mealtimeHandler} />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Dinner' />
+              <MDBCheckbox id='form1Example3' label='Dinner' name="mealtime" value="Dinner" onChange={mealtimeHandler} />
             </MDBCol>
           </MDBRow>
 
@@ -107,16 +272,16 @@ function AdminDashboard() {
               <label>Meal Type:</label>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBRadio id='form1Example3' name='mealtype' label='Anything' />
+              <MDBRadio id='form1Example3'  value='Anything' label='Anything' onChange={mealtypeHandler} />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBRadio id='form1Example3' name='mealtype' label='Paleo' />
+              <MDBRadio id='form1Example3' value='Paleo' label='Paleo' onChange={mealtypeHandler} />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBRadio id='form1Example3' name='mealtype' label='Vegetarian' />
+              <MDBRadio id='form1Example3' value='Vegetarian' label='Vegetarian' onChange={mealtypeHandler} />
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBRadio id='form1Example3' name='mealtype' label='Vegan' />
+              <MDBRadio id='form1Example3' value='Vegan' label='Vegan' onChange={mealtypeHandler} />
             </MDBCol>
           </MDBRow>
           <MDBRow className='mb-4'>
@@ -124,38 +289,38 @@ function AdminDashboard() {
               <label>Allergens:</label>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Peanut' />
+              <MDBCheckbox id='form1Example3' label='Peanut' name='allergens' value="Peanut" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Egg' />
+              <MDBCheckbox id='form1Example3' label='Egg' name='allergens' value="Egg" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Dairy' />
+              <MDBCheckbox id='form1Example3' label='Dairy' name='allergens'value="Dairy" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Fish' />
+              <MDBCheckbox id='form1Example3' label='Fish' name='allergens' value="Fish" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Soy' />
+              <MDBCheckbox id='form1Example3' label='Soy' name='allergens' value="Soy" onChange={allergenHandler}/>
             </MDBCol>
           </MDBRow>
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex'>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Wheat' />
+              <MDBCheckbox id='form1Example3' label='Wheat' name='allergens' value="Wheat" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Sesame' />
+              <MDBCheckbox id='form1Example3' label='Sesame' name='allergens' value="Sesame" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Seafood' />
+              <MDBCheckbox id='form1Example3' label='Seafood' name='allergens' value="Seafood" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Mustard' />
+              <MDBCheckbox id='form1Example3' label='Mustard' name='allergens' value="Mustard" onChange={allergenHandler}/>
             </MDBCol>
             <MDBCol className='d-flex'>
-              <MDBCheckbox id='form1Example3' label='Nuts' />
+              <MDBCheckbox id='form1Example3' label='Nuts' name='allergens' value="Nuts" onChange={allergenHandler}/>
             </MDBCol>
           </MDBRow>
           <MDBBtn type='submit' className='subbtn' block>
@@ -169,29 +334,32 @@ function AdminDashboard() {
       </MDBContainer>
 
       <MDBContainer className='mealFormCont'>
-        <form className='mealform'>
-          <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Name' />
+        <form className='mealform' onSubmit={addNData}>
+          <MDBInput className='mb-4 inputfields' type='text' id='form1Example1' label='Name' onChange={nameHandler} />
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Post' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Post' onChange={postHandler} />
             </MDBCol>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Location' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Location' onChange={locationHandler} />
             </MDBCol>
           </MDBRow>
           <MDBRow>
             <MDBCol>
-              <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Contact Number' />
+              <MDBInput className='mb-4 inputfields' type='text' id='form1Example2' label='Contact Number' onChange={mobileHandler} />
             </MDBCol>
             <MDBCol>
-              <select className='dpdown'>
+              <select className='dpdown' onChange={provinceHandler} id="provinces" defaultValue="Select province">
                 <option value='0'>Province</option>
-                <option value='0'>Province</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
-                <option value='0'>Egg</option>
+                <option value='western'>Western</option>
+                <option value='central'>Central</option>
+                <option value='southern'>Southern</option>
+                <option value='uva'>Uva</option>
+                <option value='sabaragamuwa'>Sabaragamuwa</option>
+                <option value='nwestern'>North Western</option>
+                <option value='ncentral'>North Central</option>
+                <option value='nothern'>Nothern</option>
+                <option value='eastern'>Eastern</option>
               </select>
             </MDBCol>
           </MDBRow>
@@ -248,7 +416,7 @@ function AdminDashboard() {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-          {mealData.map((data1, key) => (
+            {mealData.map((data1, key) => (
               <tr key={key}>
                 <td>{data1.mealid}</td>
                 <td>{data1.name}</td>
