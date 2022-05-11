@@ -9,6 +9,7 @@ function AdminDashboard() {
 
   const [userData, setUserData] = useState([]);
   const [mealData, setMealData] = useState([]);
+  const [nutritionistData, setNutritionistData] = useState([]);
 
   const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
 
@@ -33,7 +34,17 @@ function AdminDashboard() {
     })
 
   }, []); 
-  
+ 
+  useEffect(() => {
+    Axios.get(`https://healthyceylon.000webhostapp.com/admin_nutritionist_retrieve.php?APIkey=${APIkey}`)
+    .then((res) => {
+      setNutritionistData(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
+  }, []); 
 
   
   return (
@@ -261,36 +272,24 @@ function AdminDashboard() {
           <MDBTableHead>
             <tr>
               <th scope='col'>ID</th>
-              <th scope='col'>First</th>
-              <th scope='col'>Last</th>
-              <th scope='col'>Handle</th>
+              <th scope='col'>Name</th>
+              <th scope='col'>Post</th>
+              <th scope='col'>Hospital</th>
+              <th scope='col'>Contact</th>
+              <th scope='col'>Province</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
+            {nutritionistData.map((data2, key) => (
+              <tr key={key}>
+                <td>{data2.nutritionistid}</td>
+                <td>{data2.name}</td>
+                <td>{data2.position}</td>
+                <td>{data2.location}</td>
+                <td>{data2.phonenumber}</td>
+                <td>{data2.province}</td>
+              </tr>
+            ))}
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>
