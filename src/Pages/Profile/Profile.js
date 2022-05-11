@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Profile.css';
-import {MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableBody, MDBTableHead, MDBBtn} from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableBody, MDBTableHead, MDBBtn } from 'mdb-react-ui-kit';
+import Axios from 'axios';
 
 function Profile() {
+
+  const [userData, setUserData] = useState([]);
+  const [mealData, setMealData] = useState([]);
+
+  const uid = 1;
+
+  const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
+
+  useEffect(() => {
+    Axios.get(`https://healthyceylon.000webhostapp.com/profile_personaldata.php?uid=${uid}&APIkey=${APIkey}`)
+      .then((res) => {
+        setUserData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+  }, []);
+
+
+  useEffect(() => {
+    Axios.get(`https://healthyceylon.000webhostapp.com/profile_mealplan.php?uid=${uid}&APIkey=${APIkey}`)
+      .then((res) => {
+        setMealData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+  }, []);
+
+
   return (
     <div>
       <MDBContainer fluid className='HomeNavImage'>
@@ -22,41 +55,55 @@ function Profile() {
       <MDBContainer className='UserTable'>
         <MDBTable striped>
           <MDBTableBody>
-            <tr>
-              <th>Age</th>
-              <td>Mark</td>
-              <td><MDBBtn>Edit</MDBBtn></td>
-            </tr>
-            <tr>
-              <th>Gender</th>
-              <td>Mark</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>Weight</th>
-              <td>Mark</td>
-              <td><MDBBtn>Edit</MDBBtn></td>
-            </tr>
-            <tr>
-              <th>Height</th>
-              <td>Mark</td>
-              <td><MDBBtn>Edit</MDBBtn></td>
-            </tr>
-            <tr>
-              <th>BMI</th>
-              <td>Mark</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>BMR</th>
-              <td>Mark</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>Daily Calorie Requirement</th>
-              <td>Mark</td>
-              <td><MDBBtn>Edit</MDBBtn></td>
-            </tr>
+            {userData.map((data, key) => (
+              <tr key={key}>
+                <th>Age</th>
+                <td>{data.age}</td>
+                <td><MDBBtn>Edit</MDBBtn></td>
+              </tr>
+            ))}
+            {userData.map((data1, key) => (
+              <tr key={key}>
+                <th>Gender</th>
+                <td>{data1.gender}</td>
+                <td><MDBBtn>Edit</MDBBtn></td>
+              </tr>
+            ))}
+            {userData.map((data2, key) => (
+              <tr key={key}>
+                <th>Weight</th>
+                <td>{data2.weight}</td>
+                <td><MDBBtn>Edit</MDBBtn></td>
+              </tr>
+            ))}
+            {userData.map((data3, key) => (
+              <tr key={key}>
+                <th>Height</th>
+                <td>{data3.height}</td>
+                <td><MDBBtn>Edit</MDBBtn></td>
+              </tr>
+            ))}
+            {userData.map((data4, key) => (
+              <tr key={key}>
+                <th>BMI</th>
+                <td>{data4.height}</td>
+                <td><MDBBtn>Edit</MDBBtn></td>
+              </tr>
+            ))}
+            {userData.map((data5, key) => (
+              <tr key={key}>
+                <th>BMR</th>
+                <td>{data5.BMR}</td>
+                <td><MDBBtn>Edit</MDBBtn></td>
+              </tr>
+            ))}
+            {userData.map((data6, key) => (
+              <tr key={key}>
+                <th>Daily Calorie Requirement</th>
+                <td>{data6.caloriecount}</td>
+                <td><MDBBtn>Edit</MDBBtn></td>
+              </tr>
+            ))}
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>
@@ -64,7 +111,7 @@ function Profile() {
       <MDBContainer className='addmealtitle'>
         <MDBRow>
           <MDBCol>
-          <h1 className='titletxt'>Meal Plan</h1>
+            <h1 className='titletxt'>Meal Plan</h1>
           </MDBCol>
           <MDBCol className='justifycontent-end'>
             <MDBBtn color="success">Generate New Plan</MDBBtn>
@@ -85,38 +132,16 @@ function Profile() {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td><MDBBtn>Delete</MDBBtn></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@mdo</td>
-              <td><MDBBtn>Delete</MDBBtn></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td><MDBBtn>Delete</MDBBtn></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@mdo</td>
-              <td><MDBBtn>Delete</MDBBtn></td>
-            </tr>
+            {mealData.map((data, key) => (
+              <tr key={key}>
+                <td>{data.day}</td>
+                <td>{data.breakfast}</td>
+                <td>{data.lunch}</td>
+                <td>{data.snack}</td>
+                <td>{data.dinner}</td>
+                <td><MDBBtn>Delete</MDBBtn></td>
+              </tr>
+            ))}
           </MDBTableBody>
         </MDBTable>
       </MDBContainer>

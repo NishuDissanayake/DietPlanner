@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
 import { MDBContainer, MDBBtn, MDBRow, MDBCol, MDBCheckbox, MDBInput } from 'mdb-react-ui-kit';
+import Axios from 'axios';
+import { Navigate } from "react-router-dom";
 
 function Login() {
+
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
+
+  const emailHandler = event => {
+    setEmail(event.target.value);
+  }
+  const pwdHandler = event => {
+    setPwd(event.target.value);
+  }
+
+  const login = (e) => {
+    e.preventDefault();
+    Axios.post(`https://healthyceylon.000webhostapp.com/login_retrieve.php?APIkey=${APIkey}`, null, {
+      params: {
+        email: email,
+        pwwd: pwd
+      }
+    })
+    .then(
+      setLoggedIn(true)
+    )
+    .catch((err) => {
+      console.log(err);
+    })
+  }
   return (
     <div>
+      {
+        loggedIn
+          ? <Navigate to={{ pathname: '/profile' }} />
+          : <></>
+      }
       <MDBContainer fluid className='HomeNavImage'>
         <MDBContainer>
           <MDBRow className='headerRow'>
@@ -22,9 +58,9 @@ function Login() {
       </MDBContainer>
 
       <MDBContainer className='loginFormCont'>
-        <form className='loginform'>
-          <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Email address' />
-          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Password' />
+        <form className='loginform' onSubmit={login}>
+          <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Email address' onChange={emailHandler} />
+          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Password' onChange={pwdHandler}/>
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex justify-content-center'>
               <MDBCheckbox id='form1Example3' label='Remember me' defaultChecked />
