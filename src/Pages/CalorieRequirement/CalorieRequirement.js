@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './CalorieRequirement.css';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
+import Axios from 'axios';
 
 function CalorieRequirement() {
+
+    const [analysisData, setAnalysisData] = useState([]);
+
+    const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
+
+    const uid = 1;
+
+    useEffect(() => {
+        Axios.get(`https://healthyceylon.000webhostapp.com/analysis_select.php?uid=${uid}&APIkey=${APIkey}`)
+            .then((res) => {
+                setAnalysisData(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
+    }, []);
+
     return (
         <div>
             <MDBContainer fluid className='HomeNavImage'>
@@ -22,28 +41,36 @@ function CalorieRequirement() {
             <MDBContainer className='datadisplay'>
                 <MDBTable striped>
                     <MDBTableBody>
-                        <tr>
-                            <th>Body Mass Index (BMI)</th>
-                            <td>Mark</td>
-                        </tr>
-                        <tr>
-                            <th>Basal Metabolic Rate (BMR)</th>
-                            <td>Jacob</td>
-                        </tr>
-                        <tr>
-                            <th>Daily Calorie Requirement</th>
-                            <th>Mark</th>
-                        </tr>
+                        {analysisData.map((data, key) => (
+                            <tr key={key}>
+                                <th>Body Mass Index (BMI)</th>
+                                <td>{data.height}</td>
+                            </tr>
+                        ))}
+                        {analysisData.map((data1, key) => (
+                            <tr key={key}>
+                                <th>Basal Metabolic Rate (BMR)</th>
+                                <td>{data1.BMR}</td>
+                            </tr>
+                        ))}
+                        {analysisData.map((data2, key) => (
+                            <tr key={key}>
+                                <th>Daily Calorie Requirement</th>
+                                <td>{data2.caloriecount} calories</td>
+                            </tr>
+                        ))}
                     </MDBTableBody>
                 </MDBTable>
 
-                <MDBBtn color='success'>
-                    Proceed to generate meal plan
-                </MDBBtn>
+
 
             </MDBContainer>
 
-
+           <MDBContainer>
+           <MDBBtn color='success'>
+                Proceed to generate meal plan
+            </MDBBtn>
+           </MDBContainer>
 
         </div>
     )
