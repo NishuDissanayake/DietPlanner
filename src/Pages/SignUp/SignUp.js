@@ -3,6 +3,7 @@ import './SignUp.css';
 import { MDBContainer, MDBBtn, MDBRow, MDBCol, MDBCheckbox, MDBInput } from 'mdb-react-ui-kit';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
+import md5 from 'md5';
 
 function SignUp() {
 
@@ -39,9 +40,17 @@ function SignUp() {
           fname: fname,
           lname: lname,
           email: email,
-          pwwd: pwd
+          pwwd: md5(pwd)
         }
       })
+      .then(
+        Axios.post(`https://healthyceylon.000webhostapp.com/login_retrieve.php?APIkey=${APIkey}`, null, {
+      params: {
+        email: email,
+        pwwd: md5(pwd)
+      }
+    })
+      )
         .then(
           setSignedUp(true)
         )

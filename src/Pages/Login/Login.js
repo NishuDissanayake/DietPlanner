@@ -3,12 +3,14 @@ import './Login.css';
 import { MDBContainer, MDBBtn, MDBRow, MDBCol, MDBCheckbox, MDBInput } from 'mdb-react-ui-kit';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
+import md5 from 'md5';
 
 function Login() {
 
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  
 
   const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
 
@@ -19,17 +21,17 @@ function Login() {
     setPwd(event.target.value);
   }
 
+  const [userData, setUserData] = useState([]);
+  const [getfname, setGetFname] = useState("");
+  const [getid, setGetId] = useState("");
+
   const login = (e) => {
     e.preventDefault();
-    Axios.post(`https://healthyceylon.000webhostapp.com/login_retrieve.php?APIkey=${APIkey}`, null, {
-      params: {
-        email: email,
-        pwwd: pwd
-      }
+    Axios.get(`https://healthyceylon.000webhostapp.com/login_retrieve.php?email=${email}&pwd=${md5(pwd)}APIkey=${APIkey}`)
+    .then((res) => {
+      setUserData(res.data);
+      console.log(res.data);
     })
-    .then(
-      setLoggedIn(true)
-    )
     .catch((err) => {
       console.log(err);
     })
