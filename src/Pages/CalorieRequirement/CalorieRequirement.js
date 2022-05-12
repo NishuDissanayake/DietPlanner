@@ -10,12 +10,28 @@ function CalorieRequirement() {
 
     const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
 
-    const uid = 1;
+    const getCookie = (cname) => {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    const uid = getCookie("uid");
 
     useEffect(() => {
         Axios.get(`https://healthyceylon.000webhostapp.com/analysis_select.php?uid=${uid}&APIkey=${APIkey}`)
             .then((res) => {
                 setAnalysisData(res.data);
+                console.log(res.data)
             })
             .catch((err) => {
                 console.log(err);

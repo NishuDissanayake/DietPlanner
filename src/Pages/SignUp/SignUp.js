@@ -74,7 +74,7 @@ function SignUp() {
             <MDBCol className='headertext'>
               <h1>Read Delicious</h1>
               <h1>Simple Recipes</h1>
-              <MDBBtn className='headerbutton'>Visit Blog</MDBBtn>
+              <MDBBtn className='headerbutton' href='http://healthyceylon.epizy.com/'>Visit Blog</MDBBtn>
             </MDBCol>
           </MDBRow>
         </MDBContainer>

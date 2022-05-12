@@ -10,9 +10,10 @@ function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  
+
 
   const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
+  
 
   const emailHandler = event => {
     setEmail(event.target.value);
@@ -22,20 +23,29 @@ function Login() {
   }
 
   const [userData, setUserData] = useState([]);
-  const [getfname, setGetFname] = useState("");
-  const [getid, setGetId] = useState("");
+  const [getEmail, setGetEmail] = useState("test1@gmail.com");
+  const [getfname, setGetFname] = useState("test1");
+
+  // manually uid as 1
+  const [getid, setGetId] = useState(12);
 
   const login = (e) => {
     e.preventDefault();
-    Axios.get(`https://healthyceylon.000webhostapp.com/login_retrieve.php?email=${email}&pwd=${md5(pwd)}APIkey=${APIkey}`)
-    .then((res) => {
-      setUserData(res.data);
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+    // Axios.get(`https://healthyceylon.000webhostapp.com/login_retrieve.php?email=${email}&pwd=${md5(pwd)}APIkey=${APIkey}`)
+    //   .then((res) => {
+    //     setUserData(res.data);
+    //     console.log(res.data);
+    //   })
+        if (email === getEmail) {
+          document.cookie = `fname=${getfname}`;
+          document.cookie = `uid=${getid}`;
+
+          setLoggedIn(true)
+        }
+        else {
+          alert("Authentication Error!").then(window.location.href = "/login");
+        }
+      }
   return (
     <div>
       {
@@ -62,7 +72,7 @@ function Login() {
       <MDBContainer className='loginFormCont'>
         <form className='loginform' onSubmit={login}>
           <MDBInput className='mb-4 inputfields' type='email' id='form1Example1' label='Email address' onChange={emailHandler} />
-          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Password' onChange={pwdHandler}/>
+          <MDBInput className='mb-4 inputfields' type='password' id='form1Example2' label='Password' onChange={pwdHandler} />
           <MDBRow className='mb-4'>
             <MDBCol className='d-flex justify-content-center'>
               <MDBCheckbox id='form1Example3' label='Remember me' defaultChecked />

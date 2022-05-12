@@ -9,7 +9,22 @@ function Profile() {
   const [userData, setUserData] = useState([]);
   const [mealData, setMealData] = useState([]);
 
-  const uid = 1;
+  const getCookie = (cname) => {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+const uid = getCookie("uid");
 
   const APIkey = 'XhdfsdftyaDGANLhdfjhj346378ajk';
 
@@ -22,7 +37,7 @@ function Profile() {
         console.log(err);
       })
 
-  }, []);
+  }, [uid]);
 
 
   useEffect(() => {
@@ -34,7 +49,7 @@ function Profile() {
         console.log(err);
       })
 
-  }, []);
+  }, [uid]);
 
 
   return (

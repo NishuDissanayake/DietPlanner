@@ -22,6 +22,8 @@
 .navlinkcol
 {
    color: white !important;
+   padding: 8px !important;
+   cursor: pointer;
 }
 
 .itemsset

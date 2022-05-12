@@ -12,6 +12,7 @@ import Calendar from '../../Assets/Images/timetable.png';
 import Medal from '../../Assets/Images/certificate.png';
 import Mobile from '../../Assets/Images/smartphone.png';
 import { ReactDOM } from 'react-dom';
+import {Link} from 'react-router-dom';
 import Iframe from 'react-iframe'
 
 
@@ -27,7 +28,7 @@ function Home(props) {
             <MDBCol className='headertext'>
               <h1>Eat Healthy</h1>
               <h1>Live Healthy</h1>
-              <MDBBtn className='headerbutton'>Get Started</MDBBtn>
+              <MDBBtn className='headerbutton' tag={Link} to='signup'>Get Started</MDBBtn>
             </MDBCol>
             <MDBCol className='carousalcol justify-content-right'>
               <MDBCarousel showIndicators showControls fade className='headercarousel'>
@@ -56,7 +57,7 @@ function Home(props) {
           <MDBCol sm-9 className='promotextcol'>
             <MDBRow className='promorows'>
               <MDBCol sm-8 className='promotxt'><h2>Manage Your Diet!</h2></MDBCol>
-              <MDBCol sm-4 ><MDBBtn className='promobtn'>Get Started</MDBBtn></MDBCol>
+              <MDBCol sm-4 ><MDBBtn className='promobtn' tag={Link} to='signup'>Get Started</MDBBtn></MDBCol>
             </MDBRow >
             <MDBRow className='promotxt2'><h4>Choose the Fastest Way to Become Healthy</h4></MDBRow>
           </MDBCol>
@@ -130,7 +131,7 @@ function Home(props) {
           <MDBCol sm-9 className='promotextcol2'>
             <MDBRow className='promorows2'>
               <MDBCol sm-8 className='promotxt2'><h2>Meal Recipes!</h2></MDBCol>
-              <MDBCol sm-4 ><MDBBtn className='promobtn2'>Go To Blog</MDBBtn></MDBCol>
+              <MDBCol sm-4 ><MDBBtn className='promobtn2' href='http://healthyceylon.epizy.com/'>Go To Blog</MDBBtn></MDBCol>
             </MDBRow >
             <MDBRow className='promotxt22'><h4>Delicious Recipes with Simple Steps</h4></MDBRow>
           </MDBCol>
